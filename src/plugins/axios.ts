@@ -1,17 +1,14 @@
 import axios from "axios";
-import { useCookies } from "vue3-cookies";
-const { cookies } = useCookies();
 
-const BASE_URL = import.meta.env.VITE_API_DEV === "true" ? "http://localhost:3000" : "https://huon.dev";
+const BASE_URL = ""; // by using relative path, both the web and api can share cookies and work together, in dev, the proxy config you've set in vite.config handles it
 
 const axiosInstance = axios.create({
-    baseURL: `${BASE_URL}/api/`,
-    timeout: 2000,
+  baseURL: `${BASE_URL}/api/`,
+  timeout: 2000,
 });
 
 const getAxios = () => {
-    axiosInstance.defaults.headers.Authorization = `Bearer ${cookies.get("authToken")}`;
-    return axiosInstance;
+  return axiosInstance;
 };
 
 export default getAxios;

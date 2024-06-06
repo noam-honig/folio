@@ -6,16 +6,17 @@ import { Note } from "../shared/Note";
 import { NoteFolder } from "../shared/NoteFolder";
 import { Spotlight } from "../shared/Spotlight";
 import { Timeline } from "../shared/Timeline";
+import { repo } from "remult";
 
 export const api = remultExpress({
-    dataProvider: createKnexDataProvider({
-        client: "sqlite3",
-        connection: {
-            filename: "./portfolio.sqlite",
-        },
-        useNullAsDefault: true,
-    }),
-    admin: true,
-    entities: [Account, Image, Note, NoteFolder, Spotlight, Timeline],
-    getUser: (req) => req.session!["user"],
+  dataProvider: createKnexDataProvider({
+    client: "sqlite3",
+    connection: {
+      filename: "./portfolio.sqlite",
+    },
+    useNullAsDefault: true,
+  }),
+  admin: true,
+  entities: [Account, Image, Note, NoteFolder, Spotlight, Timeline],
+  getUser: (req) => req.session!["user"],
 });
